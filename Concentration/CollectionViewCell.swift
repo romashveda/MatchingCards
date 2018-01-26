@@ -10,6 +10,7 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell{
     
+    @IBOutlet weak var cardBackground: UIImageView!
     @IBOutlet weak var cardLabel: UILabel!
     var id = 0
     

@@ -112,6 +112,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G14-9v-h1V">
+                                                    <rect key="frame" x="0.0" y="0.0" width="78" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="SbA-71-wbU"/>
+                                                        <constraint firstAttribute="width" constant="78" id="zJN-nf-Glr"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -122,6 +129,7 @@
                                             <constraint firstItem="f1A-Wg-DfH" firstAttribute="leading" secondItem="Iu6-yD-FtY" secondAttribute="leading" constant="12" id="op2-EC-RlP"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="cardBackground" destination="G14-9v-h1V" id="F0Z-Dy-Z7I"/>
                                             <outlet property="cardLabel" destination="f1A-Wg-DfH" id="Hiy-la-lgd"/>
                                         </connections>
                                     </collectionViewCell>

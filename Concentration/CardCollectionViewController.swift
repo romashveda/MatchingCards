@@ -40,7 +40,8 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
         cell.id = card.identifier
         cell.cardLabel.text = emoji[card.identifier]
         cell.cardLabel.isHidden = true
-        cell.backgroundColor = .orange
+        cell.cardBackground.image = UIImage(named: "cardBackground")
+//        cell.backgroundColor = .orange
         return cell
     }
     
@@ -52,8 +53,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
         flippedCardsCount+=1
         switch flippedCardsCount {
         case 1:
-            cell.backgroundColor = .white
-            cell.cardLabel.isHidden = false
+            flipUp(for: cell)
             animatedFlipRight(for: cell)
             firstCard = indexPath
             flipCount+=1
@@ -61,8 +61,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             flippedCardsCount-=2
             let firstCell = collectionView.cellForItem(at: firstCard) as! CollectionViewCell
             if !(firstCell == cell){
-                cell.backgroundColor = .white
-                cell.cardLabel.isHidden = false
+                flipUp(for: cell)
                 self.animatedFlipRight(for: cell)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                 if firstCell.cardLabel.text ?? "?" == cell.cardLabel.text ?? "?"{
@@ -70,9 +69,9 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
                     cell.isHidden = true
                 }else{
                     firstCell.cardLabel.isHidden = true
-                    firstCell.backgroundColor = .orange
+                    firstCell.cardBackground.isHidden = false
                     cell.cardLabel.isHidden = true
-                    cell.backgroundColor = .orange
+                    cell.cardBackground.isHidden = false
                 }
                     self.animatedFlipLeft(for: firstCell)
                     self.animatedFlipLeft(for: cell)
@@ -85,6 +84,13 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             print("smth wrong")
         }
     }
+    
+    func flipUp(for cell: CollectionViewCell){
+        cell.cardBackground.isHidden = true
+        cell.backgroundColor = .white
+        cell.cardLabel.isHidden = false
+    }
+    
     func animatedFlipRight(for cell: CollectionViewCell){
         UIView.transition(with: cell, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }
@@ -106,7 +112,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
 //        return size
 //
 //    }
-//    //hotizontal
+//    //horizontal
 //    func collectionView(collectionView: UICollectionView,
 //                        layout collectionViewLayout: UICollectionViewLayout,
 //                        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
