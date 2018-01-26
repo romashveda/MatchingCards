@@ -73,7 +73,6 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
                     firstCell.backgroundColor = .orange
                     cell.cardLabel.isHidden = true
                     cell.backgroundColor = .orange
-                    
                 }
                     self.animatedFlipLeft(for: firstCell)
                     self.animatedFlipLeft(for: cell)
@@ -91,17 +90,22 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     }
     
     func animatedFlipLeft(for cell: CollectionViewCell){
-        UIView.transition(with: cell, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+//        self.cardsCollection.isUserInteractionEnabled = false
+        UIView.transition(with: cell, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil
+//            {
+//            isFinished in self.cardsCollection.isUserInteractionEnabled = true
+//            }
+        )
     }
     
     //  Use for size
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        view.frame.width
-//        view.frame.height
-        let size = CGSize(width: 100, height: 100)
-        return size
-
-    }
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        let myWidth = cardsCollection.frame.width/4
+//        let myHeight = cardsCollection.frame.height/5
+//        let size = CGSize(width: myWidth, height: myHeight)
+//        return size
+//
+//    }
 //    //hotizontal
 //    func collectionView(collectionView: UICollectionView,
 //                        layout collectionViewLayout: UICollectionViewLayout,
