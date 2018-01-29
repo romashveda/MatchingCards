@@ -8,28 +8,29 @@
 
 import Foundation
 
-struct Card: Hashable{
+//struct Card: Hashable{
+    //--------------------------Not used-----------------//
+//    var hashValue: Int{
+//        return identifier
+//    }
+//
+//    static func == (lhs: Card, rhs: Card) -> Bool {
+//        return lhs.identifier == rhs.identifier
+//    }
+//
+//
+//    var identifier: Int
+//
+//    private static var identifierFactoty = 0
+//
+//    private static func getUniqueIdentifier()-> Int{
+//        identifierFactoty+=1
+//        return identifierFactoty
+//    }
+//
+//    init(){
+//        self.identifier = Card.getUniqueIdentifier()
+//    }
     
-    var hashValue: Int{
-        return identifier
-    }
-    
-    static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.identifier == rhs.identifier
-    }
+//}
 
-    
-    var identifier: Int
-    
-    private static var identifierFactoty = 0
-    
-    private static func getUniqueIdentifier()-> Int{
-        identifierFactoty+=1
-        return identifierFactoty
-    }
-    
-    init(){
-        self.identifier = Card.getUniqueIdentifier()
-    }
-    
-}

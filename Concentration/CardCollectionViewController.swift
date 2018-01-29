@@ -10,38 +10,48 @@ import UIKit
 
 class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
-    lazy var game = Concentration(numberOfPairsCards: numberOfPairsOfCards)
     
     @IBOutlet weak var cardsCollection: UICollectionView!
     @IBOutlet private weak var flipCountLabel: UILabel!
+    @IBOutlet weak var score: UILabel!
     
     var numberOfCards = 0
+    var scores = 0{
+        didSet{
+            score.text = "Score: \(scores)"
+        }
+    }
     
     var items = ["😎","🎃","👻","😈","😂","👹","😡","🙏","💂🏻‍♀️","🎅🏻","👠","⛑","🎒","🎩","🐹","🐸","🐼","🐵","🐣","🐢",
                  "🐡","🐙","🐍","🌲","🌴","🌏","🌹","🍎","🍋","🍓"]
     
-    var emoji = [Int:String]()
+    var emoji = [String]()
     
     private func getEmoji(){
-        for index in game.cards.indices{
+        var unShuffled = [String]()
+        for _ in 0..<numberOfPairsOfCards{
             let randomInt = (items.count - 1).arc4random
-            let card = game.cards[index]
-            emoji[card.identifier] = items.remove(at: randomInt)
+            let randomEmoji = items.remove(at: randomInt)
+            unShuffled+=[randomEmoji,randomEmoji]
+        }
+        for _ in unShuffled.indices{
+            let rand = (unShuffled.count - 1).arc4random
+            emoji.append(unShuffled.remove(at: rand))
+            
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfCards
     }
+    var index = 0
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        let card = game.cards[indexPath.item]
-        cell.id = card.identifier
-        cell.cardLabel.text = emoji[card.identifier]
+        cell.cardLabel.text = emoji[index]
+        index+=1
         cell.cardLabel.isHidden = true
         cell.cardBackground.image = UIImage(named: "cardBackground")
-//        cell.backgroundColor = .orange
         return cell
     }
     
@@ -58,7 +68,6 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             firstCard = indexPath
             flipCount+=1
         case 2:
-            flippedCardsCount-=2
             let firstCell = collectionView.cellForItem(at: firstCard) as! CollectionViewCell
             if !(firstCell == cell){
                 flipUp(for: cell)
@@ -67,21 +76,26 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
                 if firstCell.cardLabel.text ?? "?" == cell.cardLabel.text ?? "?"{
                     firstCell.isHidden = true
                     cell.isHidden = true
+                    self.scores+=10
                 }else{
                     firstCell.cardLabel.isHidden = true
                     firstCell.cardBackground.isHidden = false
                     cell.cardLabel.isHidden = true
                     cell.cardBackground.isHidden = false
+                    self.scores-=2
                 }
                     self.animatedFlipLeft(for: firstCell)
                     self.animatedFlipLeft(for: cell)
                 })
                 flipCount+=1
             }else{
-                flippedCardsCount+=1
+                flippedCardsCount = 1
             }
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                self.flippedCardsCount = 0
+            })
         default:
-            print("smth wrong")
+            print("wait")
         }
     }
     
@@ -96,36 +110,19 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     }
     
     func animatedFlipLeft(for cell: CollectionViewCell){
-//        self.cardsCollection.isUserInteractionEnabled = false
         UIView.transition(with: cell, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil
-//            {
-//            isFinished in self.cardsCollection.isUserInteractionEnabled = true
-//            }
         )
     }
     
     //  Use for size
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        let myWidth = cardsCollection.frame.width/4
-//        let myHeight = cardsCollection.frame.height/5
-//        let size = CGSize(width: myWidth, height: myHeight)
-//        return size
-//
-//    }
-//    //horizontal
-//    func collectionView(collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return 5.0
-//    }
-//
-//    //  vertical
-//    func collectionView(collectionView: UICollectionView, layout
-//        collectionViewLayout: UICollectionViewLayout,
-//                        minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return 5.0
-//    }
-    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let myWidth = cardsCollection.frame.width/4
+        let myHeight = cardsCollection.frame.height/5
+        let size = CGSize(width: myWidth, height: myHeight)
+        return size
+
+    }
+
     
     var numberOfPairsOfCards: Int{
         return (numberOfCards+1) / 2
