@@ -10,9 +10,28 @@ import UIKit
 
 class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
+    @IBOutlet weak var timerLabel: UILabel!{
+        didSet{
+            timerLabel.text = "\(counter)"
+        }
+    }
+    var timer = Timer()
+    var counter = 0.0
+    var isRuning = false
+    
+    func startTime(){
+        if(isRuning == false){
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+        isRuning = true
+        }
+    }
+    
+    @objc func UpdateTimer(){
+        counter+=0.1
+        timerLabel.text = String(format: "%.1f",counter)
+    }
     
     @IBOutlet weak var cardsCollection: UICollectionView!
-    @IBOutlet private weak var flipCountLabel: UILabel!
     @IBOutlet weak var score: UILabel!
     
     var numberOfCards = 0
@@ -34,9 +53,9 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             let randomEmoji = items.remove(at: randomInt)
             unShuffled+=[randomEmoji,randomEmoji]
         }
-        for _ in unShuffled.indices{
-            let rand = (unShuffled.count - 1).arc4random
-            emoji.append(unShuffled.remove(at: rand))
+        while !unShuffled.isEmpty{
+            let randomIndex = unShuffled.count.arc4random
+            emoji.append(unShuffled.remove(at: randomIndex))
             
         }
     }
@@ -59,6 +78,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     var firstCard: IndexPath = []
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        startTime()
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
         flippedCardsCount+=1
         switch flippedCardsCount {
@@ -66,7 +86,6 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             flipUp(for: cell)
             animatedFlipRight(for: cell)
             firstCard = indexPath
-            flipCount+=1
         case 2:
             let firstCell = collectionView.cellForItem(at: firstCard) as! CollectionViewCell
             if !(firstCell == cell){
@@ -78,16 +97,13 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
                     cell.isHidden = true
                     self.scores+=10
                 }else{
-                    firstCell.cardLabel.isHidden = true
-                    firstCell.cardBackground.isHidden = false
-                    cell.cardLabel.isHidden = true
-                    cell.cardBackground.isHidden = false
+                    self.flipDown(for: firstCell)
+                    self.flipDown(for: cell)
                     self.scores-=2
                 }
                     self.animatedFlipLeft(for: firstCell)
                     self.animatedFlipLeft(for: cell)
                 })
-                flipCount+=1
             }else{
                 flippedCardsCount = 1
             }
@@ -96,13 +112,23 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             })
         default:
             print("wait")
+            
         }
+    }
+    
+    func quickAnimation(for cell: CollectionViewCell){
+        UIView.transition(with: cell, duration: 0.2, options: .transitionFlipFromLeft, animations: nil, completion: nil)
     }
     
     func flipUp(for cell: CollectionViewCell){
         cell.cardBackground.isHidden = true
         cell.backgroundColor = .white
         cell.cardLabel.isHidden = false
+    }
+    
+    func flipDown(for cell: CollectionViewCell){
+        cell.cardLabel.isHidden = true
+        cell.cardBackground.isHidden = false
     }
     
     func animatedFlipRight(for cell: CollectionViewCell){
@@ -123,19 +149,13 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
 
     }
 
-    
     var numberOfPairsOfCards: Int{
         return (numberOfCards+1) / 2
-    }
-
-    private(set) var flipCount = 0{
-        didSet{
-            flipCountLabel.text = "Flips: \(flipCount)"
-        }
     }
     
     override func viewDidLoad() {
         getEmoji()
+//        timerLabel.text = "\(timer)"
         super.viewDidLoad()
     }
 
