@@ -76,6 +76,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     
     var flippedCardsCount = 0
     var firstCard: IndexPath = []
+    var gameFinished = false
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         startTime()
@@ -95,7 +96,11 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
                 if firstCell.cardLabel.text ?? "?" == cell.cardLabel.text ?? "?"{
                     firstCell.isHidden = true
                     cell.isHidden = true
+                    self.numberOfCards-=2
                     self.scores+=10
+                    if self.numberOfCards == 0{
+                        self.performSegue(withIdentifier: "finishGameSegue", sender: self)
+                    }
                 }else{
                     self.flipDown(for: firstCell)
                     self.flipDown(for: cell)
@@ -112,7 +117,6 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             })
         default:
             print("wait")
-            
         }
     }
     
@@ -132,11 +136,11 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     }
     
     func animatedFlipRight(for cell: CollectionViewCell){
-        UIView.transition(with: cell, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
+        UIView.transition(with: cell, duration: 0.3, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }
     
     func animatedFlipLeft(for cell: CollectionViewCell){
-        UIView.transition(with: cell, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil
+        UIView.transition(with: cell, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil
         )
     }
     
@@ -155,8 +159,17 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     
     override func viewDidLoad() {
         getEmoji()
-//        timerLabel.text = "\(timer)"
         super.viewDidLoad()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "finishGameSegue"{
+            let finish = segue.destination as! FinishGamePopupViewController
+            _ = finish.view // forces to viewDidLoad 
+            finish.finishedScore.text = "Your score: \(scores)"
+            timer.invalidate()
+            finish.finishedTime.text = "Time: "+String(format: "%.1f",counter)
+        }
     }
 
 }

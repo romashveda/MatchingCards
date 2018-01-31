@@ -34,7 +34,7 @@
         <!--Main-->
         <scene sceneID="oku-bR-y1U">
             <objects>
-                <viewController id="9QF-1h-pOX" customClass="NumberPickerViewController" customModule="Concentration" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainMenu" id="9QF-1h-pOX" customClass="NumberPickerViewController" customModule="Concentration" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aVS-7p-xhJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,6 +79,7 @@
                     <connections>
                         <outlet property="picker" destination="4rY-xA-MKb" id="c8m-E5-5F0"/>
                         <outlet property="selectionButton" destination="3at-7f-rcH" id="Vew-3I-kTN"/>
+                        <outlet property="start" destination="3at-7f-rcH" id="4Mr-g6-4jw"/>
                         <segue destination="htb-HB-YrO" kind="show" identifier="cardCollection" id="rkV-6a-uHz"/>
                     </connections>
                 </viewController>
@@ -187,34 +188,78 @@
                         <outlet property="cardsCollection" destination="k1h-8f-kPU" id="gai-aZ-8N7"/>
                         <outlet property="score" destination="dct-EE-bp3" id="VYG-Gm-XGo"/>
                         <outlet property="timerLabel" destination="zJv-4e-J2N" id="ISa-rj-pjP"/>
-                        <segue destination="8FF-aK-Rw3" kind="show" id="Dq4-rn-ci0"/>
+                        <segue destination="8FF-aK-Rw3" kind="presentation" identifier="finishGameSegue" id="Dq4-rn-ci0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="69y-tO-Vfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="373.60000000000002" y="-1136.4532019704434"/>
         </scene>
-        <!--View Controller-->
+        <!--Finish Game Popup View Controller-->
         <scene sceneID="d37-to-oYB">
             <objects>
-                <viewController id="8FF-aK-Rw3" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="8FF-aK-Rw3" customClass="FinishGamePopupViewController" customModule="Concentration" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I2y-wh-uRZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v6C-9X-niQ">
-                                <rect key="frame" x="47" y="316" width="269" height="180"/>
+                                <rect key="frame" x="53" y="316" width="269" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Level completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHG-Qn-sEO">
+                                        <rect key="frame" x="71" y="8" width="126" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNP-Sd-7Df">
+                                        <rect key="frame" x="18" y="68" width="234" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time: 0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVh-vo-wxZ">
+                                        <rect key="frame" x="18" y="106" width="234" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wh1-Uw-Mgv">
+                                        <rect key="frame" x="35" y="142" width="77" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Menu"/>
+                                        <connections>
+                                            <action selector="backToMenu:" destination="8FF-aK-Rw3" eventType="touchUpInside" id="XRq-6I-wpR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJV-Jj-iHp">
+                                        <rect key="frame" x="152" y="142" width="82" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Retry"/>
+                                        <connections>
+                                            <action selector="retryButton:" destination="8FF-aK-Rw3" eventType="touchUpInside" id="Rpr-1G-uIq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.0" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="wqw-ZI-Wsa"/>
                     </view>
+                    <connections>
+                        <outlet property="finishWindow" destination="v6C-9X-niQ" id="vLs-Xz-9R7"/>
+                        <outlet property="finishedScore" destination="rNP-Sd-7Df" id="cBO-LH-Yhm"/>
+                        <outlet property="finishedTime" destination="hVh-vo-wxZ" id="GGh-xA-Wbe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NXw-y9-NgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1440.8" y="-1136.4532019704434"/>
+            <point key="canvasLocation" x="1204" y="-1136.4532019704434"/>
         </scene>
     </scenes>
 </document>

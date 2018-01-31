@@ -21,6 +21,7 @@ class NumberPickerViewController: UIViewController,UIPickerViewDelegate,UIPicker
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var selectionButton: UIButton!
 
+    @IBOutlet weak var start: UIButton!
     @IBAction func startGame(_ sender: UIButton) {
         amountOfCards = temp ?? 8
         performSegue(withIdentifier: "cardCollection", sender: self)
@@ -63,6 +64,13 @@ class NumberPickerViewController: UIViewController,UIPickerViewDelegate,UIPicker
         super.viewDidLoad()
         self.picker.delegate = self
         self.picker.dataSource = self
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "retryGame"), object: nil, queue: OperationQueue.main)
+        { (notification) in
+//            let startAction = notification.object as! FinishGamePopupViewController
+//            startAction.retryButton(self.start)
+            self.startGame(self.start)
+        }
         
     }
     
