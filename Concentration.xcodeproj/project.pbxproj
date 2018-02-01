@@ -12,7 +12,8 @@
 		19023AD61FFCF97C004A3D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19023AD41FFCF97C004A3D42 /* Main.storyboard */; };
 		19023AD81FFCF97C004A3D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19023AD71FFCF97C004A3D42 /* Assets.xcassets */; };
 		19023ADB1FFCF97C004A3D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19023AD91FFCF97C004A3D42 /* LaunchScreen.storyboard */; };
-		19632C812021AB3100E7E987 /* FinishGamePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19632C802021AB3100E7E987 /* FinishGamePopupViewController.swift */; };
+		19632C812021AB3100E7E987 /* MenuPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19632C802021AB3100E7E987 /* MenuPopupViewController.swift */; };
+		19632C8420221B5A00E7E987 /* Records.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19632C8220221B5A00E7E987 /* Records.xcdatamodeld */; };
 		1966388C2006487500BF87DB /* NumberPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1966388B2006487500BF87DB /* NumberPickerViewController.swift */; };
 		19663890200782EA00BF87DB /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1966388F200782EA00BF87DB /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -25,7 +26,8 @@
 		19023AD71FFCF97C004A3D42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19023ADA1FFCF97C004A3D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19023ADC1FFCF97C004A3D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19632C802021AB3100E7E987 /* FinishGamePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishGamePopupViewController.swift; sourceTree = "<group>"; };
+		19632C802021AB3100E7E987 /* MenuPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPopupViewController.swift; sourceTree = "<group>"; };
+		19632C8320221B5A00E7E987 /* Records.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Records.xcdatamodel; sourceTree = "<group>"; };
 		1966388B2006487500BF87DB /* NumberPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerViewController.swift; sourceTree = "<group>"; };
 		1966388F200782EA00BF87DB /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,7 +68,8 @@
 				1966388F200782EA00BF87DB /* CollectionViewCell.swift */,
 				19023AD41FFCF97C004A3D42 /* Main.storyboard */,
 				19023ADC1FFCF97C004A3D42 /* Info.plist */,
-				19632C802021AB3100E7E987 /* FinishGamePopupViewController.swift */,
+				19632C802021AB3100E7E987 /* MenuPopupViewController.swift */,
+				19632C8220221B5A00E7E987 /* Records.xcdatamodeld */,
 			);
 			path = Concentration;
 			sourceTree = "<group>";
@@ -153,11 +156,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19632C8420221B5A00E7E987 /* Records.xcdatamodeld in Sources */,
 				1966388C2006487500BF87DB /* NumberPickerViewController.swift in Sources */,
 				19023AD31FFCF97C004A3D42 /* CardCollectionViewController.swift in Sources */,
 				19023AD11FFCF97C004A3D42 /* AppDelegate.swift in Sources */,
 				19663890200782EA00BF87DB /* CollectionViewCell.swift in Sources */,
-				19632C812021AB3100E7E987 /* FinishGamePopupViewController.swift in Sources */,
+				19632C812021AB3100E7E987 /* MenuPopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +350,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		19632C8220221B5A00E7E987 /* Records.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				19632C8320221B5A00E7E987 /* Records.xcdatamodel */,
+			);
+			currentVersion = 19632C8320221B5A00E7E987 /* Records.xcdatamodel */;
+			path = Records.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 19023AC51FFCF97C004A3D42 /* Project object */;
 }

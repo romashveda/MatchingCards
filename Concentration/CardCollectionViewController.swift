@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, timerStartDelegate {
     
     @IBOutlet weak var timerLabel: UILabel!{
         didSet{
@@ -21,12 +21,12 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     
     func startTime(){
         if(isRuning == false){
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         isRuning = true
         }
     }
     
-    @objc func UpdateTimer(){
+    @objc func updateTimer(){
         counter+=0.1
         timerLabel.text = String(format: "%.1f",counter)
     }
@@ -164,15 +164,28 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "finishGameSegue"{
-            let finish = segue.destination as! FinishGamePopupViewController
+            let finish = segue.destination as! MenuPopupViewController
             _ = finish.view // forces to viewDidLoad 
             finish.finishedScore.text = "Your score: \(scores)"
-            timer.invalidate()
+            stopTimer()
             finish.finishedTime.text = "Time: "+String(format: "%.1f",counter)
         }
+        if segue.identifier == "pauseGameSegue" {
+            stopTimer()
+        }
     }
+    
+    func stopTimer(){
+        timer.invalidate()
+        isRuning = false
+    }
+    
 
 }
+protocol timerStartDelegate{
+    func startTime()
+}
+
 extension Int{
     var arc4random: Int {
         switch self {
