@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, timerStartDelegate {
+class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     @IBOutlet weak var timerLabel: UILabel!{
         didSet{
@@ -45,7 +45,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
                  "🐡","🐙","🐍","🌲","🌴","🌏","🌹","🍎","🍋","🍓"]
     //array of selected emojis for cells
     var emoji = [String]()
-    // init  array of emojis whith two same values and shuffle this array
+    // init  array of emojis whith two same values and shuffle this array , executes from viewDIdLoad
     private func getEmoji(){
         var unShuffled = [String]()
         for _ in 0..<numberOfPairsOfCards{
@@ -70,7 +70,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
         cell.cardLabel.text = emoji[index]
         index+=1
         cell.cardLabel.isHidden = true
-        cell.cardBackground.image = UIImage(named: "cardBackground")
+        cell.cardBackground.image = UIImage(named: "cardBack")
         return cell
     }
     
@@ -97,32 +97,32 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
                         firstCell.isHidden = true
                         cell.isHidden = true
                         self.numberOfCards-=2
-                        self.scores+=10
-                        if self.numberOfCards == 0{
+                        self.scores+=10 // add +10 to score if matches
+                        if self.numberOfCards == 0{ //ends game when all card are hidden
                             self.performSegue(withIdentifier: "finishGameSegue", sender: self)
                         }
-                    }else{
+                    }else{ //cards didnt matched, flip them down, score -2
                         self.flipDown(for: firstCell)
                         self.flipDown(for: cell)
                         self.scores-=2
                     }
-                    self.animatedFlipLeft(for: firstCell)
+                    self.animatedFlipLeft(for: firstCell) // animation for cells
                     self.animatedFlipLeft(for: cell)
                 })
             }else{ // if user clicked on the same card do nothing, seting that one card is flipped
                 flippedCardsCount = 1
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: { // waiting for animation completion , then setting 0 flipped cards , game continues
                 self.flippedCardsCount = 0
             })
-        default:
+        default: // if user tries immediately flip 3 card , do nothing
             print("wait")
         }
     }
     
-    func quickAnimation(for cell: CollectionViewCell){
-        UIView.transition(with: cell, duration: 0.2, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-    }
+//    func quickAnimation(for cell: CollectionViewCell){
+//        UIView.transition(with: cell, duration: 0.2, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+//    }
     
     func flipUp(for cell: CollectionViewCell){
         cell.cardBackground.isHidden = true
@@ -145,14 +145,35 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     }
     
     //  Use for size
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let myWidth = cardsCollection.frame.width/4
-        let myHeight = cardsCollection.frame.height/5
-        let size = CGSize(width: myWidth, height: myHeight)
-        return size
-
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        let myWidth = cardsCollection.frame.width/4
+//        let myHeight = cardsCollection.frame.height/5
+//        let size = CGSize(width: myWidth, height: myHeight)
+//        return size
+//
+//    }
+    //var cellsAmount = 8
+    
+    func cellsRowAndColomn() -> (cellInRow: Int, cellInColomn: Int){
+        var cellInRow = Int(floor(sqrt(Double(numberOfCards))))
+        while (numberOfCards % cellInRow != 0) {
+            cellInRow -= 1
+            if (cellInRow == 1) {
+                break
+            }
+        }
+        let cellInColomn = numberOfCards / cellInRow
+        return (cellInRow, cellInColomn)
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenWidth = collectionView.frame.width
+        let screenHeight = collectionView.frame.height
+        let cell = cellsRowAndColomn()
+        return CGSize(width: screenWidth/CGFloat(cell.cellInRow) - 10, height: screenHeight/CGFloat(cell.cellInColomn) - 10)
+    }
+    
+    // init number of cards
     var numberOfPairsOfCards: Int{
         return (numberOfCards+1) / 2
     }
@@ -161,7 +182,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
         getEmoji()
         super.viewDidLoad()
     }
-    
+    // direct to next controller , passing data to popUpView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "finishGameSegue"{
             let finish = segue.destination as! MenuPopupViewController
@@ -182,10 +203,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     
 
 }
-protocol timerStartDelegate{
-    func startTime()
-}
-
+// random Int var
 extension Int{
     var arc4random: Int {
         switch self {

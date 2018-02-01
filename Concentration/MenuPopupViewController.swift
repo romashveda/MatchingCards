@@ -16,6 +16,7 @@ class MenuPopupViewController: UIViewController {
     @IBOutlet weak var finishedScore: UILabel!
     @IBOutlet weak var finishedTime: UILabel!
     
+    
     @IBAction func backToMenu(_ sender: UIButton) {
         let startMenu = self.storyboard?.instantiateViewController(withIdentifier: "MainMenu") as! NumberPickerViewController
         
@@ -26,16 +27,14 @@ class MenuPopupViewController: UIViewController {
         dismiss(animated: true, completion: nil)
 //        navigationController?.popToRootViewController(animated: true)
     }
+    // creates notification to restars the game
     @IBAction func retryButton(_ sender: UIButton) {
         NotificationCenter.default.post(name: Notification.Name(rawValue: "retryGame"), object: self)
         dismiss(animated: true, completion: nil)
     }
     @IBAction func continueButton(_ sender: UIButton) {
-        delegate?.startTime() ?? print("delegate not set")
         dismiss(animated: true, completion: nil)
     }
-    
-    var delegate:timerStartDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
