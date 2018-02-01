@@ -70,7 +70,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
         cell.cardLabel.text = emoji[index]
         index+=1
         cell.cardLabel.isHidden = true
-        cell.cardBackground.image = UIImage(named: "cardBack")
+        cell.cardBackground.image = UIImage(named: "cardBack2")
         return cell
     }
     
@@ -145,14 +145,6 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     }
     
     //  Use for size
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        let myWidth = cardsCollection.frame.width/4
-//        let myHeight = cardsCollection.frame.height/5
-//        let size = CGSize(width: myWidth, height: myHeight)
-//        return size
-//
-//    }
-    //var cellsAmount = 8
     
     func cellsRowAndColomn() -> (cellInRow: Int, cellInColomn: Int){
         var cellInRow = Int(floor(sqrt(Double(numberOfCards))))

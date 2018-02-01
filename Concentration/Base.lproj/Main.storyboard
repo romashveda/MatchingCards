@@ -110,9 +110,9 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G14-9v-h1V">
                                                     <rect key="frame" x="0.0" y="0.0" width="78" height="100"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1A-Wg-DfH">
-                                                    <rect key="frame" x="0.0" y="-16" width="78" height="132"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1A-Wg-DfH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="78" height="100"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -120,14 +120,14 @@
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="f1A-Wg-DfH" firstAttribute="trailing" secondItem="G14-9v-h1V" secondAttribute="trailing" id="1nj-lc-pQ9"/>
-                                            <constraint firstItem="G14-9v-h1V" firstAttribute="leading" secondItem="Iu6-yD-FtY" secondAttribute="leading" id="1sh-Uo-hSH"/>
-                                            <constraint firstItem="f1A-Wg-DfH" firstAttribute="leading" secondItem="G14-9v-h1V" secondAttribute="leading" id="Dys-Kb-81T"/>
-                                            <constraint firstAttribute="bottom" secondItem="G14-9v-h1V" secondAttribute="bottom" id="EPc-EW-kix"/>
-                                            <constraint firstItem="G14-9v-h1V" firstAttribute="top" secondItem="Iu6-yD-FtY" secondAttribute="top" id="Fbi-cR-qLk"/>
-                                            <constraint firstItem="G14-9v-h1V" firstAttribute="centerY" secondItem="f1A-Wg-DfH" secondAttribute="centerY" id="JbG-HX-D6j"/>
-                                            <constraint firstItem="f1A-Wg-DfH" firstAttribute="top" secondItem="Iu6-yD-FtY" secondAttribute="topMargin" constant="-24" id="Q9p-S0-EM6"/>
-                                            <constraint firstAttribute="trailing" secondItem="G14-9v-h1V" secondAttribute="trailing" id="tzy-on-82h"/>
+                                            <constraint firstAttribute="bottom" secondItem="f1A-Wg-DfH" secondAttribute="bottom" id="5zE-7u-iAV"/>
+                                            <constraint firstItem="f1A-Wg-DfH" firstAttribute="top" secondItem="Iu6-yD-FtY" secondAttribute="top" id="7EJ-BT-cTJ"/>
+                                            <constraint firstItem="f1A-Wg-DfH" firstAttribute="bottom" secondItem="G14-9v-h1V" secondAttribute="bottom" id="MXd-mv-cl1"/>
+                                            <constraint firstItem="f1A-Wg-DfH" firstAttribute="trailing" secondItem="G14-9v-h1V" secondAttribute="trailing" id="Ogb-Ql-6W1"/>
+                                            <constraint firstItem="f1A-Wg-DfH" firstAttribute="leading" secondItem="G14-9v-h1V" secondAttribute="leading" id="dz5-mQ-Irf"/>
+                                            <constraint firstAttribute="trailing" secondItem="f1A-Wg-DfH" secondAttribute="trailing" id="eH5-h0-Kru"/>
+                                            <constraint firstItem="f1A-Wg-DfH" firstAttribute="top" secondItem="G14-9v-h1V" secondAttribute="top" id="f39-Bi-ExL"/>
+                                            <constraint firstItem="f1A-Wg-DfH" firstAttribute="leading" secondItem="Iu6-yD-FtY" secondAttribute="leading" id="gpq-OA-LGc"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="cardBackground" destination="G14-9v-h1V" id="F0Z-Dy-Z7I"/>
