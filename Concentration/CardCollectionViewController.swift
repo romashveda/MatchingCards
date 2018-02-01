@@ -40,12 +40,12 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             score.text = "Score: \(scores)"
         }
     }
-    
+     // all posible emoji
     var items = ["😎","🎃","👻","😈","😂","👹","😡","🙏","💂🏻‍♀️","🎅🏻","👠","⛑","🎒","🎩","🐹","🐸","🐼","🐵","🐣","🐢",
                  "🐡","🐙","🐍","🌲","🌴","🌏","🌹","🍎","🍋","🍓"]
-    
+    //array of selected emojis for cells
     var emoji = [String]()
-    
+    // init  array of emojis whith two same values and shuffle this array
     private func getEmoji(){
         var unShuffled = [String]()
         for _ in 0..<numberOfPairsOfCards{
@@ -59,12 +59,12 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             
         }
     }
-    
+    // creates number of cells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfCards
     }
     var index = 0
-    
+    // cell initialization from emoji array by index, setting background
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         cell.cardLabel.text = emoji[index]
@@ -74,42 +74,42 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
         return cell
     }
     
-    var flippedCardsCount = 0
-    var firstCard: IndexPath = []
-    var gameFinished = false
-    
+    var flippedCardsCount = 0 // counts amount of already flipped cards
+    var firstCard: IndexPath = [] // here will be indexpath of first flipped card
+    var gameFinished = false // when true finishes game
+    // logic for fliping and matching cards, works on click on cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        startTime()
+        startTime()//starting timer
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-        flippedCardsCount+=1
+        flippedCardsCount+=1 // first card flupped
         switch flippedCardsCount {
-        case 1:
+        case 1: // flips over one card with animation, setting first selected card to firstCard variable
             flipUp(for: cell)
             animatedFlipRight(for: cell)
             firstCard = indexPath
-        case 2:
+        case 2: // flips over second card
             let firstCell = collectionView.cellForItem(at: firstCard) as! CollectionViewCell
-            if !(firstCell == cell){
+            if !(firstCell == cell){ // flips over second card with animation
                 flipUp(for: cell)
                 self.animatedFlipRight(for: cell)
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                if firstCell.cardLabel.text ?? "?" == cell.cardLabel.text ?? "?"{
-                    firstCell.isHidden = true
-                    cell.isHidden = true
-                    self.numberOfCards-=2
-                    self.scores+=10
-                    if self.numberOfCards == 0{
-                        self.performSegue(withIdentifier: "finishGameSegue", sender: self)
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: { // waiting for completion of animation, then checking if its match
+                    if firstCell.cardLabel.text ?? "?" == cell.cardLabel.text ?? "?"{//if card match hide both
+                        firstCell.isHidden = true
+                        cell.isHidden = true
+                        self.numberOfCards-=2
+                        self.scores+=10
+                        if self.numberOfCards == 0{
+                            self.performSegue(withIdentifier: "finishGameSegue", sender: self)
+                        }
+                    }else{
+                        self.flipDown(for: firstCell)
+                        self.flipDown(for: cell)
+                        self.scores-=2
                     }
-                }else{
-                    self.flipDown(for: firstCell)
-                    self.flipDown(for: cell)
-                    self.scores-=2
-                }
                     self.animatedFlipLeft(for: firstCell)
                     self.animatedFlipLeft(for: cell)
                 })
-            }else{
+            }else{ // if user clicked on the same card do nothing, seting that one card is flipped
                 flippedCardsCount = 1
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
