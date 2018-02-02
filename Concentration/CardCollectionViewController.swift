@@ -135,6 +135,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
         cell.cardBackground.isHidden = false
     }
     
+    // core animation
     func animatedFlipRight(for cell: CollectionViewCell){
         UIView.transition(with: cell, duration: 0.3, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }

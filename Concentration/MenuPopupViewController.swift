@@ -19,7 +19,6 @@ class MenuPopupViewController: UIViewController {
     
     @IBAction func backToMenu(_ sender: UIButton) {
         let startMenu = self.storyboard?.instantiateViewController(withIdentifier: "MainMenu") as! NumberPickerViewController
-        
         let startMenuNav = UINavigationController(rootViewController: startMenu)
         startMenuNav.isNavigationBarHidden = true
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

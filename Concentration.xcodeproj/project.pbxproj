@@ -67,7 +67,6 @@
 				19023AD21FFCF97C004A3D42 /* CardCollectionViewController.swift */,
 				1966388F200782EA00BF87DB /* CollectionViewCell.swift */,
 				19023AD41FFCF97C004A3D42 /* Main.storyboard */,
-				19023ADC1FFCF97C004A3D42 /* Info.plist */,
 				19632C802021AB3100E7E987 /* MenuPopupViewController.swift */,
 				19632C8220221B5A00E7E987 /* CoreModel.xcdatamodeld */,
 			);
@@ -77,6 +76,7 @@
 		19023AE31FFCFDA2004A3D42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				19023ADC1FFCF97C004A3D42 /* Info.plist */,
 				19023AD01FFCF97C004A3D42 /* AppDelegate.swift */,
 				19023AD71FFCF97C004A3D42 /* Assets.xcassets */,
 				19023AD91FFCF97C004A3D42 /* LaunchScreen.storyboard */,
