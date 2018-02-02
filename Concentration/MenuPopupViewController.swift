@@ -41,8 +41,8 @@ class MenuPopupViewController: UIViewController {
     }
     
     //початкова ініціалізація змінних, які ти передаєш з попереднього контролера (це можна організувати в segue
-//    var level = 0
-//    var time = 0
+//    var level = 1
+//    var time = 0.0
 //    var score = 0
 //    
 //    var results: [NSManagedObject] = [] // це масив об’єктів кор дати

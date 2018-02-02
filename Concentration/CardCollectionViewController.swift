@@ -182,6 +182,8 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             finish.finishedScore.text = "Your score: \(scores)"
             stopTimer()
             finish.finishedTime.text = "Time: "+String(format: "%.1f",counter)
+//            finish.score = scores
+//            finish.time = counter
         }
         if segue.identifier == "pauseGameSegue" {
             stopTimer()
