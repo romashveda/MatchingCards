@@ -11,7 +11,6 @@ import CoreData
 
 class MenuPopupViewController: UIViewController {
     
-    
     @IBOutlet weak var finishWindow: UIView!
     @IBOutlet weak var finishedScore: UILabel!
     @IBOutlet weak var finishedTime: UILabel!

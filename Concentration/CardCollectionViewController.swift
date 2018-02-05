@@ -46,7 +46,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     //array of selected emojis for cells
     var emoji = [String]()
     // init  array of emojis whith two same values and shuffle this array , executes from viewDIdLoad
-    private func getEmoji(){
+    func getEmoji(){
         var unShuffled = [String]()
         for _ in 0..<numberOfPairsOfCards{
             let randomInt = (items.count - 1).arc4random
@@ -76,12 +76,12 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     
     var flippedCardsCount = 0 // counts amount of already flipped cards
     var firstCard: IndexPath = [] // here will be indexpath of first flipped card
-    var gameFinished = false // when true finishes game
-    // logic for fliping and matching cards, works on click on cell
+
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        startTime()//starting timer
+        startTime() //starting timer
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-        flippedCardsCount+=1 // first card flupped
+        flippedCardsCount+=1 // first card flipped
         switch flippedCardsCount {
         case 1: // flips over one card with animation, setting first selected card to firstCard variable
             flipUp(for: cell)
@@ -117,6 +117,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             })
         default: // if user tries immediately flip 3 card , do nothing
             print("wait")
+            
         }
     }
     
@@ -172,9 +173,10 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     }
     
     override func viewDidLoad() {
-        getEmoji()
         super.viewDidLoad()
+        getEmoji()
     }
+    
     // direct to next controller , passing data to popUpView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "finishGameSegue"{
