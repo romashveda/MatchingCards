@@ -12,6 +12,7 @@
 		19023AD61FFCF97C004A3D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19023AD41FFCF97C004A3D42 /* Main.storyboard */; };
 		19023AD81FFCF97C004A3D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19023AD71FFCF97C004A3D42 /* Assets.xcassets */; };
 		19023ADB1FFCF97C004A3D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19023AD91FFCF97C004A3D42 /* LaunchScreen.storyboard */; };
+		1912D9002029BE280019A6A9 /* Functionallity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1912D8FF2029BE280019A6A9 /* Functionallity.swift */; };
 		19632C812021AB3100E7E987 /* MenuPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19632C802021AB3100E7E987 /* MenuPopupViewController.swift */; };
 		19632C8420221B5A00E7E987 /* CoreModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19632C8220221B5A00E7E987 /* CoreModel.xcdatamodeld */; };
 		1966388C2006487500BF87DB /* NumberPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1966388B2006487500BF87DB /* NumberPickerViewController.swift */; };
@@ -26,6 +27,7 @@
 		19023AD71FFCF97C004A3D42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19023ADA1FFCF97C004A3D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19023ADC1FFCF97C004A3D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1912D8FF2029BE280019A6A9 /* Functionallity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functionallity.swift; sourceTree = "<group>"; };
 		19632C802021AB3100E7E987 /* MenuPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPopupViewController.swift; sourceTree = "<group>"; };
 		19632C8320221B5A00E7E987 /* Records.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Records.xcdatamodel; sourceTree = "<group>"; };
 		1966388B2006487500BF87DB /* NumberPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				19023AD41FFCF97C004A3D42 /* Main.storyboard */,
 				19632C802021AB3100E7E987 /* MenuPopupViewController.swift */,
 				19632C8220221B5A00E7E987 /* CoreModel.xcdatamodeld */,
+				1912D8FF2029BE280019A6A9 /* Functionallity.swift */,
 			);
 			path = Concentration;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1912D9002029BE280019A6A9 /* Functionallity.swift in Sources */,
 				19632C8420221B5A00E7E987 /* CoreModel.xcdatamodeld in Sources */,
 				1966388C2006487500BF87DB /* NumberPickerViewController.swift in Sources */,
 				19023AD31FFCF97C004A3D42 /* CardCollectionViewController.swift in Sources */,

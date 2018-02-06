@@ -11,9 +11,13 @@ import CoreData
 
 class MenuPopupViewController: UIViewController {
     
+    
+    
     @IBOutlet weak var finishWindow: UIView!
     @IBOutlet weak var finishedScore: UILabel!
     @IBOutlet weak var finishedTime: UILabel!
+    @IBOutlet weak var levelCompleted: UILabel!
+    
     
     
     @IBAction func backToMenu(_ sender: UIButton) {
@@ -42,9 +46,9 @@ class MenuPopupViewController: UIViewController {
 //    var level = 1
 //    var time = 0.0
 //    var score = 0
-//    
+//
 //    var results: [NSManagedObject] = [] // це масив об’єктів кор дати
-//    
+//
 //    // а тут ініціалізація самого звернення до бази данних
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
@@ -58,7 +62,7 @@ class MenuPopupViewController: UIViewController {
 //        }
 //        saveNewResult()
 //    }
-//    
+//
 //    func saveNewResult() {
 //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
 //        let context = appDelegate.persistentContainer.viewContext
@@ -66,7 +70,7 @@ class MenuPopupViewController: UIViewController {
 //        newResult.setValue(level, forKey: "level") // тут жовтим атрибути в твоїй схемі
 //        newResult.setValue(time, forKey: "time")
 //        newResult.setValue(score, forKey: "score")
-//        
+//
 //        do {
 //            try context.save()
 //            results.append(newResult)

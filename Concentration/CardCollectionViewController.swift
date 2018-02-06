@@ -40,7 +40,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             score.text = "Score: \(scores)"
         }
     }
-     // all posible emoji
+    
     var items = ["😎","🎃","👻","😈","😂","👹","😡","🙏","💂🏻‍♀️","🎅🏻","👠","⛑","🎒","🎩","🐹","🐸","🐼","🐵","🐣","🐢",
                  "🐡","🐙","🐍","🌲","🌴","🌏","🌹","🍎","🍋","🍓"]
     //array of selected emojis for cells
@@ -176,7 +176,7 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
         super.viewDidLoad()
         getEmoji()
     }
-    
+    let game = Functionallity()
     // direct to next controller , passing data to popUpView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "finishGameSegue"{
@@ -185,6 +185,8 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
             finish.finishedScore.text = "Your score: \(scores)"
             stopTimer()
             finish.finishedTime.text = "Time: "+String(format: "%.1f",counter)
+            game.finishedLevels+=1
+            finish.levelCompleted.text = "Level \(game.finishedLevels) completed"
 //            finish.score = scores
 //            finish.time = counter
         }

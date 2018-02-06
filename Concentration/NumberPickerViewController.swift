@@ -15,7 +15,8 @@ class NumberPickerViewController: UIViewController,UIPickerViewDelegate,UIPicker
 
     let pickerArray = [8,12,16,20,24,28,32,36,40]
     
-    let pickerSize: CGFloat = 60
+    let pickerHeight: CGFloat = 60
+    let pickerWidth: CGFloat = 100
     // temporary variable for getting information from picker
     var temp: Int?
     
@@ -30,30 +31,30 @@ class NumberPickerViewController: UIViewController,UIPickerViewDelegate,UIPicker
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    //getting next controller by segue and passing data to next controller
+  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "cardCollection" {
             let nav = segue.destination as! CardCollectionViewController
             nav.numberOfCards = temp ?? 8
         }
     }
-    //number of items in picker
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerArray.count
     }
     //custumizing picker
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: pickerSize, height: pickerSize))
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: pickerSize, height: pickerSize))
-        label.text = String(pickerArray[row])
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: pickerWidth, height: pickerHeight))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: pickerWidth, height: pickerHeight))
+        label.text = "Level \((pickerArray.index(of: pickerArray[row]) ?? 1)+1)"
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 40, weight: UIFont.Weight.bold)
+        label.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight.bold)
         view.addSubview(label)
         return view
     }
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return pickerSize
+        return pickerHeight
     }
     // initializing optional var temp from pickerarray and parsing to Int
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
