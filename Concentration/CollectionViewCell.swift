@@ -12,5 +12,7 @@ class CollectionViewCell: UICollectionViewCell{
     
     @IBOutlet weak var cardBackground: UIImageView!
     @IBOutlet weak var cardLabel: UILabel!
+    @IBOutlet weak var cardForeground: UIImageView!
+    
     
 }

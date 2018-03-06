@@ -43,20 +43,28 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     
     var items = ["😎","🎃","👻","😈","😂","👹","😡","🙏","💂🏻‍♀️","🎅🏻","👠","⛑","🎒","🎩","🐹","🐸","🐼","🐵","🐣","🐢",
                  "🐡","🐙","🐍","🌲","🌴","🌏","🌹","🍎","🍋","🍓"]
+    var images = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22",
+                  "23","24","25","26","27","28","29","30"]
+    
     //array of selected emojis for cells
     var emoji = [String]()
+    var image = [String]()
     // init  array of emojis whith two same values and shuffle this array , executes from viewDIdLoad
     func getEmoji(){
         var unShuffled = [String]()
+        var unShuffled2 = [String]()
         for _ in 0..<numberOfPairsOfCards{
             let randomInt = (items.count - 1).arc4random
             let randomEmoji = items.remove(at: randomInt)
+            let randomImage = images.remove(at: randomInt)
             unShuffled+=[randomEmoji,randomEmoji]
+            unShuffled2+=[randomImage,randomImage]
+            
         }
         while !unShuffled.isEmpty{
             let randomIndex = unShuffled.count.arc4random
             emoji.append(unShuffled.remove(at: randomIndex))
-            
+            image.append(unShuffled2.remove(at: randomIndex))
         }
     }
     // creates number of cells
@@ -68,9 +76,12 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         cell.cardLabel.text = emoji[index]
+        cell.cardForeground.image = UIImage(named: image[index])
         index+=1
         cell.cardLabel.isHidden = true
+        cell.cardForeground.isHidden = true
         cell.cardBackground.image = UIImage(named: "cardBack2")
+        
         return cell
     }
     
@@ -128,11 +139,13 @@ class CardCollectionViewController: UIViewController,UICollectionViewDelegate,UI
     func flipUp(for cell: CollectionViewCell){
         cell.cardBackground.isHidden = true
         cell.backgroundColor = .white
-        cell.cardLabel.isHidden = false
+//        cell.cardLabel.isHidden = true
+        cell.cardForeground.isHidden = false
     }
     
     func flipDown(for cell: CollectionViewCell){
-        cell.cardLabel.isHidden = true
+//        cell.cardLabel.isHidden = true
+        cell.cardForeground.isHidden = true
         cell.cardBackground.isHidden = false
     }
     

@@ -93,7 +93,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="k1h-8f-kPU">
                                 <rect key="frame" x="10" y="55" width="355" height="600"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FVc-Ox-0de">
                                     <size key="itemSize" width="78" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -110,28 +110,39 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G14-9v-h1V">
                                                     <rect key="frame" x="0.0" y="0.0" width="78" height="100"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lof-QE-vXU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="78" height="100"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1A-Wg-DfH">
                                                     <rect key="frame" x="0.0" y="0.0" width="78" height="100"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="f1A-Wg-DfH" secondAttribute="bottom" id="5zE-7u-iAV"/>
                                             <constraint firstItem="f1A-Wg-DfH" firstAttribute="top" secondItem="Iu6-yD-FtY" secondAttribute="top" id="7EJ-BT-cTJ"/>
+                                            <constraint firstItem="lof-QE-vXU" firstAttribute="leading" secondItem="Iu6-yD-FtY" secondAttribute="leading" id="7Vh-xh-i7O"/>
+                                            <constraint firstAttribute="bottom" secondItem="lof-QE-vXU" secondAttribute="bottom" id="I5E-Vv-H2k"/>
                                             <constraint firstItem="f1A-Wg-DfH" firstAttribute="bottom" secondItem="G14-9v-h1V" secondAttribute="bottom" id="MXd-mv-cl1"/>
+                                            <constraint firstAttribute="trailing" secondItem="lof-QE-vXU" secondAttribute="trailing" id="NIW-cB-XM5"/>
                                             <constraint firstItem="f1A-Wg-DfH" firstAttribute="trailing" secondItem="G14-9v-h1V" secondAttribute="trailing" id="Ogb-Ql-6W1"/>
                                             <constraint firstItem="f1A-Wg-DfH" firstAttribute="leading" secondItem="G14-9v-h1V" secondAttribute="leading" id="dz5-mQ-Irf"/>
                                             <constraint firstAttribute="trailing" secondItem="f1A-Wg-DfH" secondAttribute="trailing" id="eH5-h0-Kru"/>
                                             <constraint firstItem="f1A-Wg-DfH" firstAttribute="top" secondItem="G14-9v-h1V" secondAttribute="top" id="f39-Bi-ExL"/>
                                             <constraint firstItem="f1A-Wg-DfH" firstAttribute="leading" secondItem="Iu6-yD-FtY" secondAttribute="leading" id="gpq-OA-LGc"/>
+                                            <constraint firstItem="lof-QE-vXU" firstAttribute="top" secondItem="Iu6-yD-FtY" secondAttribute="top" id="loz-MG-BIm"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="cardBackground" destination="G14-9v-h1V" id="F0Z-Dy-Z7I"/>
+                                            <outlet property="cardForeground" destination="lof-QE-vXU" id="nUF-SO-xOf"/>
                                             <outlet property="cardLabel" destination="f1A-Wg-DfH" id="Hiy-la-lgd"/>
                                         </connections>
                                     </collectionViewCell>
