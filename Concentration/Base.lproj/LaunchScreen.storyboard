@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,25 +19,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="793-Kk-PFc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="793-Kk-PFc">
                                 <rect key="frame" x="192" y="232" width="167" height="139"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="139" id="KdM-ev-Yqt"/>
+                                    <constraint firstAttribute="width" constant="167" id="ubP-uu-1ux"/>
+                                </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="Kdk-aw-26u">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="Kdk-aw-26u">
                                 <rect key="frame" x="183" y="64" width="167" height="139"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="139" id="J3f-Gn-cvt"/>
+                                    <constraint firstAttribute="width" constant="167" id="yG9-Wc-7ST"/>
+                                </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="sf7-2O-Bya">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="sf7-2O-Bya">
                                 <rect key="frame" x="25" y="241" width="167" height="139"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="UvD-mD-iwb"/>
+                                    <constraint firstAttribute="height" constant="139" id="mYV-Fr-HIh"/>
+                                </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="HNS-VI-wUD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="HNS-VI-wUD">
                                 <rect key="frame" x="16" y="74" width="167" height="139"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="SYb-vW-edM"/>
+                                    <constraint firstAttribute="height" constant="139" id="pEI-sL-wZD"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memo Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwU-Sl-ILF">
                                 <rect key="frame" x="25" y="488" width="325" height="159"/>
@@ -47,10 +60,18 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="HNS-VI-wUD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="54" id="0tJ-hf-FYU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xwU-Sl-ILF" secondAttribute="trailing" constant="25" id="4RP-kW-R2Q"/>
+                            <constraint firstItem="Kdk-aw-26u" firstAttribute="trailing" secondItem="xwU-Sl-ILF" secondAttribute="trailing" id="4Wx-In-q5G"/>
+                            <constraint firstItem="793-Kk-PFc" firstAttribute="top" secondItem="Kdk-aw-26u" secondAttribute="bottom" constant="29" id="4l2-An-rk5"/>
                             <constraint firstItem="xwU-Sl-ILF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="468" id="8NY-Ys-nGu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xwU-Sl-ILF" secondAttribute="bottom" constant="20" id="8tB-gF-r1s"/>
+                            <constraint firstItem="Kdk-aw-26u" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="OoO-Mx-lBb"/>
                             <constraint firstItem="xwU-Sl-ILF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="VGf-89-KNu"/>
+                            <constraint firstItem="HNS-VI-wUD" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="Vrv-Ev-TeO"/>
+                            <constraint firstItem="793-Kk-PFc" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="aiD-5o-Pqx"/>
+                            <constraint firstItem="sf7-2O-Bya" firstAttribute="leading" secondItem="xwU-Sl-ILF" secondAttribute="leading" id="hCj-xD-Mix"/>
+                            <constraint firstItem="sf7-2O-Bya" firstAttribute="top" secondItem="HNS-VI-wUD" secondAttribute="bottom" constant="28" id="p4Q-fo-lbv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
