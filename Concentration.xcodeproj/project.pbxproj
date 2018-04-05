@@ -17,9 +17,11 @@
 		19632C8420221B5A00E7E987 /* CoreModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19632C8220221B5A00E7E987 /* CoreModel.xcdatamodeld */; };
 		1966388C2006487500BF87DB /* NumberPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1966388B2006487500BF87DB /* NumberPickerViewController.swift */; };
 		19663890200782EA00BF87DB /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1966388F200782EA00BF87DB /* CollectionViewCell.swift */; };
+		ED57446E1372FE849A24E7CB /* Pods_Concentration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD42795EAE4BC3956FB4B488 /* Pods_Concentration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		080C909134DAF126458A1AAF /* Pods-Concentration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Concentration.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Concentration/Pods-Concentration.debug.xcconfig"; sourceTree = "<group>"; };
 		19023ACD1FFCF97C004A3D42 /* Concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19023AD01FFCF97C004A3D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19023AD21FFCF97C004A3D42 /* CardCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +34,8 @@
 		19632C8320221B5A00E7E987 /* Records.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Records.xcdatamodel; sourceTree = "<group>"; };
 		1966388B2006487500BF87DB /* NumberPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerViewController.swift; sourceTree = "<group>"; };
 		1966388F200782EA00BF87DB /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		CB6CCDA31D0541EC7E35DD1D /* Pods-Concentration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Concentration.release.xcconfig"; path = "Pods/Target Support Files/Pods-Concentration/Pods-Concentration.release.xcconfig"; sourceTree = "<group>"; };
+		CD42795EAE4BC3956FB4B488 /* Pods_Concentration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Concentration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED57446E1372FE849A24E7CB /* Pods_Concentration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +55,8 @@
 			children = (
 				19023ACF1FFCF97C004A3D42 /* Concentration */,
 				19023ACE1FFCF97C004A3D42 /* Products */,
+				E6F8A1F6E6A65F3AFF4508ED /* Pods */,
+				40A79895A85269193A575748 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,6 +94,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		40A79895A85269193A575748 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD42795EAE4BC3956FB4B488 /* Pods_Concentration.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E6F8A1F6E6A65F3AFF4508ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				080C909134DAF126458A1AAF /* Pods-Concentration.debug.xcconfig */,
+				CB6CCDA31D0541EC7E35DD1D /* Pods-Concentration.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -94,9 +118,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19023ADF1FFCF97C004A3D42 /* Build configuration list for PBXNativeTarget "Concentration" */;
 			buildPhases = (
+				6DDC6372E62D6DE92B05B2D6 /* [CP] Check Pods Manifest.lock */,
 				19023AC91FFCF97C004A3D42 /* Sources */,
 				19023ACA1FFCF97C004A3D42 /* Frameworks */,
 				19023ACB1FFCF97C004A3D42 /* Resources */,
+				91862B604BB583E99C6AE234 /* [CP] Embed Pods Frameworks */,
+				009180D7D6F5E408698406B1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -114,7 +141,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Roman Shveda";
 				TargetAttributes = {
 					19023ACC1FFCF97C004A3D42 = {
@@ -153,6 +180,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		009180D7D6F5E408698406B1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Concentration/Pods-Concentration-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DDC6372E62D6DE92B05B2D6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Concentration-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91862B604BB583E99C6AE234 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Concentration/Pods-Concentration-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Concentration/Pods-Concentration-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		19023AC91FFCF97C004A3D42 /* Sources */ = {
@@ -205,6 +286,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -212,6 +294,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -262,6 +345,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -269,6 +353,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -300,6 +385,7 @@
 		};
 		19023AE01FFCF97C004A3D42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 080C909134DAF126458A1AAF /* Pods-Concentration.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -317,6 +403,7 @@
 		};
 		19023AE11FFCF97C004A3D42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB6CCDA31D0541EC7E35DD1D /* Pods-Concentration.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

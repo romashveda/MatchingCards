@@ -13,6 +13,10 @@ class Functionallity{
     var finishedLevels = 0
 }
 
+struct Image: Decodable {
+    var name: String
+    var link: URL
+}
 
 extension Int{ // random Int var
     var arc4random: Int {
