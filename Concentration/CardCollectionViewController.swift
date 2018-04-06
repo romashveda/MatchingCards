@@ -63,6 +63,12 @@ class CardCollectionViewController: UIViewController{
         dismiss()
     }
     
+    @IBOutlet weak var timerLabel: UILabel!{
+        didSet{
+            timerLabel.text = "\(counter)"
+        }
+    }
+    
     func dismiss(){
         UIView.animate(withDuration: 0.3, animations: {
             self.pausePopup.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
@@ -119,11 +125,7 @@ class CardCollectionViewController: UIViewController{
         timerLabel.text = String(format: "%.1f",counter)
     }
     
-    @IBOutlet weak var timerLabel: UILabel!{
-        didSet{
-            timerLabel.text = "\(counter)"
-        }
-    }
+
     
     func getImage() {
         var unShuffled = [Image]()
@@ -178,24 +180,6 @@ class CardCollectionViewController: UIViewController{
     func stopTimer(){
         timer.invalidate()
         isRuning = false
-    }
-    
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-    
-    func startIndicator() {
-        // Position Activity Indicator in the center of the main view
-        activityIndicator.center = view.center
-        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
-        activityIndicator.hidesWhenStopped = false
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
-    }
-    
-    func stopIndicator() {
-        activityIndicator.stopAnimating()
-        activityIndicator.hidesWhenStopped = true
-        UIApplication.shared.endIgnoringInteractionEvents()
     }
     
     func checkResultsEmpty() {
@@ -266,14 +250,13 @@ class CardCollectionViewController: UIViewController{
 
     }
     
-    func printDataFromDB() {
-        print("================= BEST RECORDS IN DATABASE =================")
+    func showHighScore() {
         for result in results {
             let cardsResult = result.value(forKey: "cardsNumber") ?? 0
             let scoreResult = result.value(forKey: "score") ?? 0
             let timeResult = result.value(forKey: "time") ?? 0
             let time = timeResult as! Double
-            print("CARDS : [\(cardsResult)] cards || SCORE : [\(scoreResult)] || TIME : [\(timeResult)] seconds")
+            print("\(cardsResult) cards, \(scoreResult) score \(timeResult) seconds")
             if cardsResult as! Int == cardLevel{
                 highScore.text = "Highscore: \(scoreResult) points, " + String(format: "%.1f",time)+" s"
             }
@@ -303,23 +286,17 @@ extension CardCollectionViewController: UICollectionViewDelegate,UICollectionVie
         DispatchQueue.global().async { [weak self] in
             guard let weakSelf = self else {return}
             let foregroundPic = try! UIImage(withContentsOfUrl: weakSelf.selectedImages[indexPath.row].link)
-            DispatchQueue.main.async { [weak self, weak cell] in
-                guard let weakSelf = self else {return}
-//                self?.group.enter()
-//                weakSelf.startIndicator()
-                weakSelf.dowloadedImages[link] = foregroundPic
-                cell?.cardForeground.image = foregroundPic
-//                self?.group.leave()
-                weakSelf.index+=1
+                DispatchQueue.main.async { [weak self, weak cell] in
+                    guard let weakSelf = self else {return}
+                    weakSelf.dowloadedImages[link] = foregroundPic
+                    cell?.cardForeground.image = foregroundPic
+                    weakSelf.index+=1
+                }
             }
-        }
         }
         cell.name = self.selectedImages[indexPath.row].name
         cell.cardForeground.isHidden = true
         cell.cardBackground.image = UIImage(named: "cardBack2")
-//        group.notify(queue: .main) {
-//            self.stopIndicator()
-//        }
         return cell
     }
     
@@ -346,7 +323,7 @@ extension CardCollectionViewController: UICollectionViewDelegate,UICollectionVie
                         if self.numberOfCards == 0{ //ends game when all cards are hidden
                             self.checkResultsEmpty()
                             self.showFinishMenu()
-                            self.printDataFromDB()
+                            self.showHighScore()
                         }
                     }else{ //cards didnt matched, flip them down, score -2
                         self.flipDown(for: firstCell)
