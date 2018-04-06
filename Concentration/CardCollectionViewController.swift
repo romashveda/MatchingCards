@@ -20,7 +20,7 @@ class CardCollectionViewController: UIViewController{
     var index = 0
     var numberOfCards = 0
     var results: [NSManagedObject] = []
-    var firstTryOfLevel = false
+    
     var scores = 0 {
         didSet{
             score.text = "Score: \(scores)"
@@ -59,7 +59,7 @@ class CardCollectionViewController: UIViewController{
         dismiss()
     }
     @IBAction func toNextLevel(_ sender: UIButton) {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "nextLevel"), object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "nextLevel"), object: self, userInfo: ["number": cardLevel])
         dismiss()
     }
     
@@ -75,7 +75,7 @@ class CardCollectionViewController: UIViewController{
     }
     
     func showFinishMenu(){
-        checkForFirstTry()
+        checkResultsEmpty()
         addPopUp(viewTo: fininshPopup)
         yourScore.text = "Your score: \(scores) points, " + String(format: "%.1f",counter)+" s"
     }
@@ -101,7 +101,11 @@ class CardCollectionViewController: UIViewController{
         fetchResults()
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        fininshPopup.layer.cornerRadius = 10
+        pausePopup.layer.cornerRadius = 10
+    }
     
     func startTime(){
         if(isRuning == false){
@@ -171,21 +175,6 @@ class CardCollectionViewController: UIViewController{
     
     let game = Functionallity()
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "finishGameSegue"{
-            let finish = segue.destination as! MenuPopupViewController
-            _ = finish.view // forces to viewDidLoad 
-            finish.finishedScore.text = "Your score: \(scores)" // found nil urwraping optional
-            stopTimer()
-            finish.finishedTime.text = "Time: "+String(format: "%.1f",counter)
-            game.finishedLevels+=1
-            finish.levelCompleted.text = "Level \(game.finishedLevels) completed"
-        }
-        if segue.identifier == "pauseGameSegue" {
-            stopTimer()
-        }
-    }
-    
     func stopTimer(){
         timer.invalidate()
         isRuning = false
@@ -209,27 +198,22 @@ class CardCollectionViewController: UIViewController{
         UIApplication.shared.endIgnoringInteractionEvents()
     }
     
-    //початкова ініціалізація змінних, які ти передаєш з попереднього контролера (це можна організувати в segue
-    
-    // а тут ініціалізація самого звернення до бази данних
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//    }
-    
-    func checkForFirstTry() {
+    func checkResultsEmpty() {
+        var saved = false
         if results.isEmpty{
             saveNewResult()
         }else {
-        for result in results {
-            // Checking result by cardsNumber Key
-            let cardsResult = result.value(forKey: "cardsNumber") as! Int
-            if cardsResult == cardLevel {
-                saveBestRecordForLevel()
+            for result in results {
+                // Checking result by cardsNumber Key
+                let cardsResult = result.value(forKey: "cardsNumber") as! Int
+                if cardsResult == cardLevel {
+                    saveBestRecordForLevel()
+                    saved = true
+                }
             }
-            else {
+            if !saved {
                 saveNewResult()
             }
-        }
         }
     }
     
@@ -288,9 +272,11 @@ class CardCollectionViewController: UIViewController{
             let cardsResult = result.value(forKey: "cardsNumber") ?? 0
             let scoreResult = result.value(forKey: "score") ?? 0
             let timeResult = result.value(forKey: "time") ?? 0
-            var time = timeResult as! Double
+            let time = timeResult as! Double
             print("CARDS : [\(cardsResult)] cards || SCORE : [\(scoreResult)] || TIME : [\(timeResult)] seconds")
-            highScore.text = "Highscore: \(scoreResult) points, " + String(format: "%.1f",time)+" s"
+            if cardsResult as! Int == cardLevel{
+                highScore.text = "Highscore: \(scoreResult) points, " + String(format: "%.1f",time)+" s"
+            }
         }
     }
 }
@@ -358,9 +344,8 @@ extension CardCollectionViewController: UICollectionViewDelegate,UICollectionVie
                         self.numberOfCards-=2
                         self.scores+=10
                         if self.numberOfCards == 0{ //ends game when all cards are hidden
-                            self.checkForFirstTry()
+                            self.checkResultsEmpty()
                             self.showFinishMenu()
-//                            self.highScore.text =
                             self.printDataFromDB()
                         }
                     }else{ //cards didnt matched, flip them down, score -2

@@ -19,11 +19,13 @@ class NumberPickerViewController: UIViewController {
     let jsonArray = ["https://raw.githubusercontent.com/romashveda/Images/master/Nature/NatureImages.json","https://raw.githubusercontent.com/romashveda/Images/master/Sports/SportsImages.json","https://raw.githubusercontent.com/romashveda/Images/master/Social/SocialImages.json"]
     let pickerHeight: CGFloat = 60
     let pickerWidth: CGFloat = 100
-    var temp: Int?
+    var temp = 8
     var images = [Image]()
     var rotationAngle: CGFloat!
     var imagesPick = [("Nature", #imageLiteral(resourceName: "natureImage")), ("Sports", #imageLiteral(resourceName: "sportsImage")), ("Social", #imageLiteral(resourceName: "socialImage"))]
     let group = DispatchGroup()
+    let reachability = Reachability()!
+    var reachable = false
     
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var selectionButton: UIButton!
@@ -36,7 +38,11 @@ class NumberPickerViewController: UIViewController {
     
     @IBAction func startGame(_ sender: UIButton) {
         group.notify(queue: .main) {
-            self.performSegue(withIdentifier: "cardCollection", sender: self)
+            if self.reachable{
+                self.performSegue(withIdentifier: "cardCollection", sender: self)
+            } else {
+                return
+            }
         }
     }
     
@@ -48,6 +54,37 @@ class NumberPickerViewController: UIViewController {
         leftArrow.image = UIImage(named: "leftArrow")
         rightArrow.image = UIImage(named: "rightArrow")
         leftArrow.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        do{
+            try reachability.startNotifier()
+        }catch{
+            print("could not start reachability notifier")
+        }
+    }
+    
+    @objc func reachabilityChanged(note: Notification) {
+        
+        let reachability = note.object as! Reachability
+        
+        switch reachability.connection {
+        case .wifi:
+            print("Reachable via WiFi")
+            reachable = true
+        case .cellular:
+            print("Reachable via Cellular")
+            reachable = true
+        case .none:
+            print("Network not reachable")
+            showAlert()
+            reachable = false
+        }
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(title: "Error", message: "Network not reachable", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(alertAction)
+        present(alert,animated: true, completion: nil)
     }
     
     
@@ -62,7 +99,8 @@ class NumberPickerViewController: UIViewController {
             self.startGame(self.start)
         }
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "nextLevel"), object: nil, queue: OperationQueue.main) { notification in
-            
+            let level = notification.userInfo!["number"] as! Int
+            self.temp = level + 4
             self.startGame(self.start)
         }
     }
@@ -92,13 +130,8 @@ class NumberPickerViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "cardCollection" {
             let nav = segue.destination as! CardCollectionViewController
-            nav.numberOfCards = temp ?? 8
+            nav.numberOfCards = temp
             nav.images = images
-//            NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "nextLevel"), object: nil, queue: OperationQueue.main) { notification in
-//                print(nav.numberOfCards)
-//                nav.numberOfCards += 4
-//                self.startGame(self.start)
-//            }
         }
     }
 }
@@ -157,7 +190,6 @@ extension NumberPickerViewController: UIPickerViewDelegate, UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == picker {
             temp = pickerArray[row]
-            
         }else {
             parseJson(from: jsonArray[row])
             if row == 0 {
