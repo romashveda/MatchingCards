@@ -38,7 +38,7 @@ class NumberPickerViewController: UIViewController {
     
     @IBAction func startGame(_ sender: UIButton) {
         group.notify(queue: .main) {
-            if self.reachable{
+            if self.reachable {
                 self.performSegue(withIdentifier: "cardCollection", sender: self)
             } else {
                 return
